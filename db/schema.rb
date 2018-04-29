@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_29_005026) do
+ActiveRecord::Schema.define(version: 2018_04_29_002505) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,16 +21,6 @@ ActiveRecord::Schema.define(version: 2018_04_29_005026) do
     t.string "category"
     t.string "url"
     t.string "image"
-    t.decimal "anger", precision: 4, scale: 3
-    t.decimal "joy", precision: 4, scale: 3
-    t.decimal "fear", precision: 4, scale: 3
-    t.decimal "sadness", precision: 4, scale: 3
-    t.decimal "surprise", precision: 4, scale: 3
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "sentiments", force: :cascade do |t|
     t.decimal "anger", precision: 4, scale: 3
     t.decimal "joy", precision: 4, scale: 3
     t.decimal "fear", precision: 4, scale: 3

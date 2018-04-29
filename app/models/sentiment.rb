@@ -1,2 +1,0 @@
-class Sentiment < ApplicationRecord
-end

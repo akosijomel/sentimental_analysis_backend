@@ -11,12 +11,9 @@ require 'rails/configuration'
   data["results"].each do |article, index|
     existing_article = Article.find_by(headline: article["title"])
 
-    if existing_article
-      puts "exists"
-    else
+    if !existing_article
       config = {api_key: "#{ENV["INDICO_API_KEY"]}"}
-      emotion = (Indico.emotion(article["title"], config))
-
+      emotion = (Indico.emotion(article["abstract"], config))
 
       news = Article.new do |key|
         key.headline = article["title"]
