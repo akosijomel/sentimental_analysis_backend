@@ -73,5 +73,6 @@ module SentimentalAnalysisBackend
     #     end
     #   end
     # end
+    # config.autoload_paths += Dir["#{Rails.root}/app/lib"]
   end
 end
