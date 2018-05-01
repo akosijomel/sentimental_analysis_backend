@@ -30,6 +30,7 @@ require 'rails/configuration'
         key.fear = emotion["fear"]
         key.sadness = emotion["sadness"]
         key.surprise = emotion["surprise"]
+        key.date = Time.now
       end
       if news.save
         puts "saved"

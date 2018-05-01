@@ -16,7 +16,7 @@ module Api
       private
 
       def article_params
-        params.require(:article).permit(:headline, :abstract, :category, :url, :image, :anger, :joy, :fear, :sadness, :surprise)
+        params.require(:article).permit(:headline, :abstract, :category, :url, :image, :anger, :joy, :fear, :sadness, :surprise, :date)
       end
 
     end
