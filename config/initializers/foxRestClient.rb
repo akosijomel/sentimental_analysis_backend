@@ -3,19 +3,19 @@ require 'indico'
 require 'rails/configuration'
 
 
-  bbc_url = "https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey="
+  fox_url = "https://newsapi.org/v2/top-headlines?sources=fox-news&apiKey="
 
-  data = JSON.parse( RestClient.get("#{bbc_url}#{ENV["NEWS_API_KEY"]}") )
+  data = JSON.parse( RestClient.get("#{fox_url}#{ENV["NEWS_API_KEY"]}") )
 
 
   data["articles"].each do |article, index|
-    existing_article = Broadcasting.find_by(headline: article["title"])
+    existing_article = Fox.find_by(headline: article["title"])
 
     if !existing_article
       config = {api_key: "#{ENV["INDICO_API_KEY"]}"}
       emotion = (Indico.emotion(article["description"], config))
 
-      news = Broadcasting.new do |key|
+      news = Fox.new do |key|
         key.headline = article["title"]
         key.abstract = article["description"]
         key.url = article["url"]
@@ -28,9 +28,9 @@ require 'rails/configuration'
         key.date = Time.now
       end
       if news.save
-        puts "saved bbc"
+        puts "saved fox"
       else
-        puts "not saved bbc"
+        puts "not saved fox"
       end
 
     end

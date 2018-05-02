@@ -6,7 +6,7 @@ module Api
       end
 
       def create
-        @broadcasting = Broadcasting.new(article_params)
+        @broadcasting = Broadcasting.new(broadcasting_params)
 
         if @broadcasting.save
           render json: @broadcasting
