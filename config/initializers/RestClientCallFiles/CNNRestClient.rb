@@ -9,17 +9,22 @@ require 'rails/configuration'
 
 
   data["articles"].each do |article, index|
-    existing_article = Cable.find_by(headline: article["title"])
+    existing_article = Article.find_by(headline: article["title"])
 
     if !existing_article
       config = {api_key: "#{ENV["INDICO_API_KEY"]}"}
       emotion = (Indico.emotion(article["description"], config))
 
-      news = Cable.new do |key|
+      news = Article.new do |key|
         key.headline = article["title"]
+        key.news_station = "Cable News Network"
         key.abstract = article["description"]
         key.url = article["url"]
-        key.image = article["urlToImage"]
+        if article["urlToImage"] === nil
+          key.image = "https://yt3.ggpht.com/a-/AJLlDp0ZdRWMgQ0r70gOBmYQd6dM8xcUhipQvQt_Gw=s900-mo-c-c0xffffffff-rj-k-no"
+        else
+          key.image = article["urlToImage"]
+        end
         key.anger = emotion["anger"]
         key.joy = emotion["joy"]
         key.fear = emotion["fear"]

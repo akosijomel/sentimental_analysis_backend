@@ -9,17 +9,22 @@ require 'rails/configuration'
 
 
   data["articles"].each do |article, index|
-    existing_article = Broadcasting.find_by(headline: article["title"])
+    existing_article = Article.find_by(headline: article["title"])
 
     if !existing_article
       config = {api_key: "#{ENV["INDICO_API_KEY"]}"}
       emotion = (Indico.emotion(article["description"], config))
 
-      news = Broadcasting.new do |key|
+      news = Article.new do |key|
         key.headline = article["title"]
+        key.news_station = "British Broadcasting Corporation"
         key.abstract = article["description"]
         key.url = article["url"]
-        key.image = article["urlToImage"]
+        if article["urlToImage"] === nil
+          key.image = "https://pmcdeadline2.files.wordpress.com/2016/06/bbc-logo.jpg?w=446&h=299&crop=1"
+        else
+          key.image = article["urlToImage"]
+        end
         key.anger = emotion["anger"]
         key.joy = emotion["joy"]
         key.fear = emotion["fear"]

@@ -1,6 +1,7 @@
 class CreateArticles < ActiveRecord::Migration[5.2]
   def change
     create_table :articles do |t|
+      t.string :news_station
       t.string :headline
       t.string :abstract
       t.string :category
@@ -11,7 +12,8 @@ class CreateArticles < ActiveRecord::Migration[5.2]
       t.decimal :fear, :precision => 4, :scale => 3
       t.decimal :sadness, :precision => 4, :scale => 3
       t.decimal :surprise, :precision => 4, :scale => 3
-
+      t.date :date
+      
       t.timestamps
     end
   end

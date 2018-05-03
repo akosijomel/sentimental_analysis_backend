@@ -17,6 +17,7 @@ require 'rails/configuration'
 
       news = Article.new do |key|
         key.headline = article["title"]
+        key.news_station = "New York Times"
         key.abstract = article["abstract"]
         key.category = article["section"]
         key.url = article["url"]
@@ -33,7 +34,7 @@ require 'rails/configuration'
         key.date = Time.now
       end
       if news.save
-        puts "saved"
+        puts "saved nyt"
       else
         puts "not saved"
       end
