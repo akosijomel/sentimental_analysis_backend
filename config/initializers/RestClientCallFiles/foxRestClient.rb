@@ -10,7 +10,7 @@ require 'rails/configuration'
 
   data["articles"].each do |article, index|
     existing_article = Article.find_by(headline: article["title"])
-    if article["description"]
+    if article["description"].length > 0
       if !existing_article
         config = {api_key: "#{ENV["INDICO_API_KEY"]}"}
         emotion = (Indico.emotion(article["description"], config))
