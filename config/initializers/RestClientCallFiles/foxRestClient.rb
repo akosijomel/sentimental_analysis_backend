@@ -22,6 +22,8 @@ require 'rails/configuration'
           key.url = article["url"]
           if article["urlToImage"] === nil
             key.image = "http://global.fncstatic.com/static/v/all/static-page/apps-products/img/fn-logo.png"
+          elsif article["urlToImage"] === ActiveRecord::RecordNotFound
+            key.image = "http://global.fncstatic.com/static/v/all/static-page/apps-products/img/fn-logo.png"
           else
             key.image = article["urlToImage"]
           end
