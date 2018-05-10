@@ -1,7 +1,6 @@
-class API::V1::AuthController < ApplicationController
+class Api::V1::AuthsController < ApplicationController
   def create
-    byebug
-    user = User.find_by(email: params[:email])
+    user = User.find(email: params[:email])
     if user && user.authenticate(params[:password])
       render json: {
         id: user.id,
