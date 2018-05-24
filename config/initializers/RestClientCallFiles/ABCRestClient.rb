@@ -13,7 +13,7 @@ require 'rails/configuration'
     if article["description"].length > 0
       if !existing_article
         config = {api_key: "#{ENV["INDICO_API_KEY"]}"}
-        emotion = (Indico.emotion(article["description"], config))
+        emotion = (Indico.emotion(article["title"], config))
 
         news = Article.new do |key|
           key.headline = article["title"]
